@@ -1,0 +1,87 @@
+Document prepared to select the gcc version when you various gcc version installed on your system
+Skip step 1 and 2 if gcc and g++ is already installed.
+
+1. Remove all gcc and g++ versions
+    =========================================
+    sudo update-alternatives --remove-all gcc 
+    sudo update-alternatives --remove-all g++
+    =========================================
+
+2. Install the necessary gcc and g++ versions 
+    ====================================================
+    sudo apt-get install gcc-4.3 gcc-4.4 g++-4.3 g++-4.4
+    ====================================================
+
+3. List the gcc and g++ versions with update-alternatives 
+    =======================================================================
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.x 10
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.y 20
+
+    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.x 10
+    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.y 20
+    =======================================================================
+
+4. Install and set the versions
+    ==================================================================
+    sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
+    sudo update-alternatives --set cc /usr/bin/gcc
+
+    sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
+    sudo update-alternatives --set c++ /usr/bin/g++
+    ===================================================================
+
+5. To choose the gcc and g++ version interactively
+    =====================================
+    sudo update-alternatives --config gcc
+    sudo update-alternatives --config g++
+    =====================================
+
+    ================================================================================
+    Example:
+    /*************************** GCC Version **************************************/
+    *   [/usr/bin] >> sudo update-alternatives --config gcc                       *
+    *   There are 2 choices for the alternative gcc (providing /usr/bin/gcc).     *
+    *                                                                             *
+    *     Selection    Path              Priority   Status                        *
+    *   ------------------------------------------------------------              *
+    *     0            /usr/bin/gcc-5     20        auto mode                     *
+    *   * 1            /usr/bin/gcc-4.7   10        manual mode                   *
+    *     2            /usr/bin/gcc-5     20        manual mode                   *
+    *                                                                             *
+    *   Press <enter> to keep the current choice[*], or type selection number: 1  *
+    *                                                                             *
+    /**************************** END OF GCC EXAMPLE ******************************/
+
+
+    /******************* G++ VERSION EXAMPLE *********************************/
+    *   [/usr/bin] >> sudo update-alternatives --config g++                  *
+    *   There are 2 choices for the alternative g++ (providing /usr/bin/g++).*
+    *                                                                        *
+    *     Selection    Path              Priority   Status                   *
+    *   ------------------------------------------------------------         *
+    *     0            /usr/bin/g++-5     20        auto mode                *
+    *   * 1            /usr/bin/g++-4.7   10        manual mode              *
+    *     2            /usr/bin/g++-5     20        manual mode              *
+    *                                                                        *
+    /********************** END OF G++ EXAMPLE *******************************/
+    ======================================================================= 
+    
+
+Or use this script 
+
+|============================================================================| 
+| #!/bin/sh                                                                  |
+|                                                                            |
+| if [ -z "$1" ]; then                                                       |
+|    echo "usage: $0 version" 1>&2                                           |
+|        exit 1                                                              |
+|        fi                                                                  |
+|                                                                            |
+|        if [ ! -f "/usr/bin/gcc-$1" ] || [ ! -f "/usr/bin/g++-$1" ]; then   |
+|            echo "no such version gcc/g++ installed" 1>&2                   |
+|                exit 1                                                      |
+|                fi                                                          |
+|                                                                            |
+|                update-alternatives --set gcc "/usr/bin/gcc-$1"             |
+|                update-alternatives --set g++ "/usr/bin/g++-$1"             |
+|============================================================================|

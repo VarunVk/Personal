@@ -1,0 +1,5 @@
+set rpmkey wsgclient/ignore-fw t
+
+Old key
+set rpmkey apmgr-ignore-ver t
+

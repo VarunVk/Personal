@@ -1,0 +1,8 @@
+cd ~/ws/coverity-desktop
+export P4CLIENT=vk_scorpion
+/home/administrator/ws/vk_scorpion/buildroot
+export PROFILE=ap-11n-scorpion-wsg
+export COV_STREAM=104-ap-11n-scorpion-wsg
+~/coverity/cov-analysis/bin/cov-manage-emit --dir /var/tmp/cov-int-desktop list
+cd ~/coverity/AP/cov-scripts
+~/coverity/cov-analysis/bin/cov-run-desktop /home/administrator/ws/vk_scorpion/video54/apps/rkscli/rkscli_bf.c

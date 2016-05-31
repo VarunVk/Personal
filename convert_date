@@ -1,0 +1,12 @@
+TO convert a date command output in %s to UTC
+
+[~/ws/vk_scorpion/buildroot] >> date +%s
+1458666818
+[~/ws/vk_scorpion/buildroot] >> date -d 1458666818
+date: invalid date ‘1458666818’
+[~/ws/vk_scorpion/buildroot] >> date -d @1458666818
+Tue Mar 22 22:43:38 IST 2016
+[~/ws/vk_scorpion/buildroot] >> date -d @1458666818 -u
+Tue Mar 22 17:13:38 UTC 2016
+[~/ws/vk_scorpion/buildroot] >> 
+

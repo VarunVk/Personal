@@ -1,0 +1,16 @@
+#!/usr/bin/expect
+#!/bin/bash
+spawn ssh admin@172.19.130.18
+expect "'s password"
+send "ruckus1!\r"
+expect "apsecurity>"
+send "en\r"
+expect "Password:"
+send "ruckus1!\r"
+expect "apsecurity#"
+send "!V54!\r"
+expect "bash"
+send "sudo bash\r"
+expect "root@apsecurity "
+send "\r"
+interact

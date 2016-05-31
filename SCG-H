@@ -1,0 +1,5 @@
+sysctl -w net.ipv4.conf.all.rp_filter=0; sysctl -w net.ipv4.conf.br0.rp_filter=0; sysctl -w net.ipv4.conf.br1.rp_filter=0; sysctl -w net.ipv4.conf.br2.rp_filter=0
+
+
+to restart most of the process
+/opt/ruckuswireless/wsg/cli/bin/configurer.py restart
